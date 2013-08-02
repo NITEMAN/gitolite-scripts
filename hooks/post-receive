@@ -1,0 +1,24 @@
+#!/bin/sh
+
+#set -x
+
+REAL_PATH=$($(which dirname) $(readlink -f "$0"))
+
+CALL_BRANCH_SCRIPT="${REAL_PATH}/../lib/post-receive.refname.sh"
+CALL_DEFAULT_SCRIPT="${REAL_PATH}/../lib/post-receive.end.sh"
+
+# Consume refs
+while read oldrev newrev refname
+do
+  echo "oldrev                                   newrev                                   refname"
+  echo $oldrev $newrev $refname
+  if [ -x ${CALL_BRANCH_SCRIPT} ]; then
+    ${CALL_BRANCH_SCRIPT} $refname
+  fi
+done
+
+if [ -x ${CALL_DEFAULT_SCRIPT} ]; then
+  ${CALL_DEFAULT_SCRIPT}
+fi
+
+exit 0

@@ -1,0 +1,1 @@
+../../deploy-scripts/autodeploy-drupal.sh
