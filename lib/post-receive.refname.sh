@@ -26,7 +26,7 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         DEPLOY_NAME=$(git config "hooks.deployB${BRANCH_NAME}Name")
         MAKEFILE_NAME=$(git config "hooks.deployMakeFile")
         : ${GL_USER:="bash"}
-        sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal-profile.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal_profile.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
         ;;
       moodle)
         DEPLOY_NAME=$(git config "hooks.deployB${BRANCH_NAME}Name")

@@ -1,1 +1,0 @@
-../../deploy-scripts/autodeploy-drupal-profile.sh
