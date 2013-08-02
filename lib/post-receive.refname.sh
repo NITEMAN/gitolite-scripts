@@ -32,6 +32,7 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         DEPLOY_NAME=$(git config "hooks.deployB${BRANCH_NAME}Name")
         : ${GL_USER:="bash"}
         sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
       *)
         echo "!!! ERROR: unsupported deployType '${DEPLOY_TYPE}'"
         ;;
