@@ -26,12 +26,18 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
       drupal)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
-      drupal_profile)
+      drupal-make)
         MAKEFILE_NAME=$(git config "hooks.deployB${BRANCH_NAME}MakeFile")
         MAKEFILE_NAME=${MAKEFILE_NAME:-"$(git config 'hooks.deployMakeFile')"};
-        sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal_profile.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal-make.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
         ;;
       moodle)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
+      wordpress)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
+      symfony)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       *)
