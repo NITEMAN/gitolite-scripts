@@ -8,6 +8,9 @@ DEPLOY_AUTO=$(git config hooks.deployAuto)
 DEPLOY_TYPE=$(git config hooks.deployType)
 
 REF=$1
+OLD=$2
+NEW=$3
+
 BRANCH_NAME=$(echo ${REF} | awk -F/ '{print $NF}')
 
 if [ "${DEPLOY_AUTO}" = 'true' ]; then
@@ -24,7 +27,8 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       drupal_profile)
-        MAKEFILE_NAME=$(git config "hooks.deployMakeFile")
+        MAKEFILE_NAME=$(git config "hooks.deployB${BRANCH_NAME}MakeFile")
+        MAKEFILE_NAME=${MAKEFILE_NAME:-"$(git config 'hooks.deployMakeFile')"};
         sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal_profile.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
         ;;
       moodle)
@@ -32,8 +36,20 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         ;;
       *)
         echo "!!! ERROR: unsupported deployType '${DEPLOY_TYPE}'"
+        #TODO: consistent error code handling
+        exit 1
         ;;
     esac
+    #TODO: Implement a default as in drupal-profile
+    MAIL_LIST=$(git config hooks.deployB${BRANCH_NAME}Notify)
+    if [ ! "${MAIL_LIST}" = '' ]; then
+      #git log --name-status $2..$3 | mail -s "Automatic deployment done on ${DEPLOY_NAME}" ${MAIL_LIST}
+      INTERVAL="$2..$3"
+      DIFF_FILE="/tmp/$INTERVAL.diff"
+      git diff $INTERVAL > $DIFF_FILE
+      git log --name-status $INTERVAL | iconv -f utf8 -t ASCII//TRANSLIT | mail -s "Automatic deployment done on ${DEPLOY_NAME}" -a ${DIFF_FILE} ${MAIL_LIST}
+      rm $DIFF_FILE
+    fi
   fi
 fi
 

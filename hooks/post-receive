@@ -13,7 +13,7 @@ do
   echo "oldrev                                   newrev                                   refname"
   echo $oldrev $newrev $refname
   if [ -x ${CALL_BRANCH_SCRIPT} ]; then
-    ${CALL_BRANCH_SCRIPT} $refname
+    ${CALL_BRANCH_SCRIPT} $refname $oldrev $newrev
   fi
 done
 
