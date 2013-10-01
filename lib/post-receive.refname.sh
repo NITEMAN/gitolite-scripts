@@ -51,7 +51,7 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
       WEB_ROOT=$(git config hooks.deployRoot)
       : ${WEB_ROOT:="/var/www"}
       SUBDIR=$(git config hooks.deploySubdir)
-      sudo ${SCRIPT_DIR}/sudo/robots_disallow.sh "${WEB_ROOT}/${SITE_NAME}/${SUBDIR}"
+      sudo ${SCRIPT_DIR}/sudo/robots_disallow.sh "${WEB_ROOT}/${DEPLOY_NAME}/${SUBDIR}"
     fi
     #TODO: Implement a default as in drupal-profile
     MAIL_LIST=$(git config hooks.deployB${BRANCH_NAME}Notify)
