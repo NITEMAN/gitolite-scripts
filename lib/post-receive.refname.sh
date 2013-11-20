@@ -35,10 +35,10 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       wordpress)
-        sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-wordpress.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       symfony)
-        sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-symfony.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       *)
         echo "!!! ERROR: unsupported deployType '${DEPLOY_TYPE}'"
