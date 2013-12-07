@@ -34,6 +34,9 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
       moodle)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
+      prestashop)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-prestashop.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
       wordpress)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-wordpress.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
