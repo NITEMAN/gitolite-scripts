@@ -31,17 +31,23 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
         MAKEFILE_NAME=${MAKEFILE_NAME:-"$(git config 'hooks.deployMakeFile')"};
         sudo ${SCRIPT_DIR}/sudo/autodeploy-drupal-make.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER} ${MAKEFILE_NAME}
         ;;
+      generic)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-generic.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
       moodle)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-moodle.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
-      wordpress)
-        sudo ${SCRIPT_DIR}/sudo/autodeploy-wordpress.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+      prestashop)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-prestashop.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       symfony)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-symfony.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       symfony-composer)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-symfony-composer.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
+      wordpress)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-wordpress.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
       *)
         echo "!!! ERROR: unsupported deployType '${DEPLOY_TYPE}'"
