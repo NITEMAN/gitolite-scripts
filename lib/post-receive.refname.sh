@@ -40,6 +40,9 @@ if [ "${DEPLOY_AUTO}" = 'true' ]; then
       symfony)
         sudo ${SCRIPT_DIR}/sudo/autodeploy-symfony.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
         ;;
+      symfony-composer)
+        sudo ${SCRIPT_DIR}/sudo/autodeploy-symfony-composer.sh ${DEPLOY_NAME} ${BRANCH_NAME} ${GL_USER}
+        ;;
       *)
         echo "!!! ERROR: unsupported deployType '${DEPLOY_TYPE}'"
         #TODO: consistent error code handling
