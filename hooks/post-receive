@@ -2,6 +2,12 @@
 
 #set -x
 
+MIRROR="$(git config hooks.mainMirror)"
+
+if [ ! "${MIRROR_CONF}" = '' ]; then
+  git push $MIRROR_CONF --mirror
+fi
+
 REAL_PATH=$($(which dirname) $(readlink -f "$0"))
 
 CALL_BRANCH_SCRIPT="${REAL_PATH}/../lib/post-receive.refname.sh"
