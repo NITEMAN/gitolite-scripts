@@ -2,10 +2,10 @@
 
 #set -x
 
-MIRROR="$(git config hooks.mainMirror)"
+HOOK_MIRROR_URL="$(git config hooks.mainMirror)"
 
-if [ ! "${MIRROR_CONF}" = '' ]; then
-  git push $MIRROR_CONF --mirror
+if [ ! "${HOOK_MIRROR_URL}" = '' ]; then
+  git push ${HOOK_MIRROR_URL} --mirror
 fi
 
 REAL_PATH=$($(which dirname) $(readlink -f "$0"))
